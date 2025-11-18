@@ -28,158 +28,188 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnRegisterSubmit = new System.Windows.Forms.Button();
-            this.txtRegConfirmPassword = new System.Windows.Forms.TextBox();
-            this.txtRegUsername = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtRegPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtRegFullName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            btnLogin = new Button();
+            btnRegisterSubmit = new Button();
+            txtRegConfirmPassword = new TextBox();
+            txtRegUsername = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            lbDangKy = new Label();
+            label4 = new Label();
+            txtRegPassword = new TextBox();
+            label5 = new Label();
+            txtRegFullName = new TextBox();
+            label6 = new Label();
+            button1 = new Button();
+            label1 = new Label();
+            SuspendLayout();
             // 
             // btnLogin
             // 
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(309, 366);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(146, 35);
-            this.btnLogin.TabIndex = 18;
-            this.btnLogin.Text = "Đăng nhập";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            btnLogin.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogin.Location = new Point(273, 455);
+            btnLogin.Margin = new Padding(3, 4, 3, 4);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(146, 43);
+            btnLogin.TabIndex = 18;
+            btnLogin.Text = "Đăng nhập";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnRegisterSubmit
             // 
-            this.btnRegisterSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegisterSubmit.Location = new System.Drawing.Point(49, 284);
-            this.btnRegisterSubmit.Name = "btnRegisterSubmit";
-            this.btnRegisterSubmit.Size = new System.Drawing.Size(459, 59);
-            this.btnRegisterSubmit.TabIndex = 17;
-            this.btnRegisterSubmit.Text = "Đăng ký";
-            this.btnRegisterSubmit.UseVisualStyleBackColor = true;
-            this.btnRegisterSubmit.Click += new System.EventHandler(this.btnRegisterSubmit_Click);
+            btnRegisterSubmit.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRegisterSubmit.Location = new Point(104, 315);
+            btnRegisterSubmit.Margin = new Padding(3, 4, 3, 4);
+            btnRegisterSubmit.Name = "btnRegisterSubmit";
+            btnRegisterSubmit.Size = new Size(315, 47);
+            btnRegisterSubmit.TabIndex = 17;
+            btnRegisterSubmit.Text = "Đăng ký";
+            btnRegisterSubmit.UseVisualStyleBackColor = true;
+            btnRegisterSubmit.Click += btnRegisterSubmit_Click;
             // 
             // txtRegConfirmPassword
             // 
-            this.txtRegConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegConfirmPassword.Location = new System.Drawing.Point(235, 213);
-            this.txtRegConfirmPassword.Name = "txtRegConfirmPassword";
-            this.txtRegConfirmPassword.Size = new System.Drawing.Size(273, 30);
-            this.txtRegConfirmPassword.TabIndex = 16;
-            this.txtRegConfirmPassword.UseSystemPasswordChar = true;
+            txtRegConfirmPassword.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRegConfirmPassword.Location = new Point(235, 261);
+            txtRegConfirmPassword.Margin = new Padding(3, 4, 3, 4);
+            txtRegConfirmPassword.Name = "txtRegConfirmPassword";
+            txtRegConfirmPassword.Size = new Size(273, 30);
+            txtRegConfirmPassword.TabIndex = 16;
+            txtRegConfirmPassword.UseSystemPasswordChar = true;
             // 
             // txtRegUsername
             // 
-            this.txtRegUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegUsername.Location = new System.Drawing.Point(235, 60);
-            this.txtRegUsername.Name = "txtRegUsername";
-            this.txtRegUsername.Size = new System.Drawing.Size(273, 30);
-            this.txtRegUsername.TabIndex = 13;
+            txtRegUsername.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRegUsername.Location = new Point(235, 75);
+            txtRegUsername.Margin = new Padding(3, 4, 3, 4);
+            txtRegUsername.Name = "txtRegUsername";
+            txtRegUsername.Size = new Size(273, 30);
+            txtRegUsername.TabIndex = 13;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 216);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(174, 25);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Nhập lại mật khẩu:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(18, 266);
+            label3.Name = "label3";
+            label3.Size = new Size(174, 25);
+            label3.TabIndex = 11;
+            label3.Text = "Nhập lại mật khẩu:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 25);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Tài khoản:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(12, 75);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 25);
+            label2.TabIndex = 10;
+            label2.Text = "Tài khoản:";
             // 
-            // label1
+            // lbDangKy
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(203, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 32);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Hello Bro";
+            lbDangKy.AutoSize = true;
+            lbDangKy.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbDangKy.Location = new Point(117, 9);
+            lbDangKy.Name = "lbDangKy";
+            lbDangKy.Size = new Size(302, 32);
+            lbDangKy.TabIndex = 9;
+            lbDangKy.Text = "ĐĂNG KÍ TÀI KHOẢN";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(117, 373);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(134, 20);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Đã có tài khoản?";
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(104, 466);
+            label4.Name = "label4";
+            label4.Size = new Size(134, 20);
+            label4.TabIndex = 12;
+            label4.Text = "Đã có tài khoản?";
             // 
             // txtRegPassword
             // 
-            this.txtRegPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegPassword.Location = new System.Drawing.Point(235, 160);
-            this.txtRegPassword.Name = "txtRegPassword";
-            this.txtRegPassword.Size = new System.Drawing.Size(273, 30);
-            this.txtRegPassword.TabIndex = 15;
-            this.txtRegPassword.UseSystemPasswordChar = true;
+            txtRegPassword.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRegPassword.Location = new Point(235, 200);
+            txtRegPassword.Margin = new Padding(3, 4, 3, 4);
+            txtRegPassword.Name = "txtRegPassword";
+            txtRegPassword.Size = new Size(273, 30);
+            txtRegPassword.TabIndex = 15;
+            txtRegPassword.UseSystemPasswordChar = true;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(44, 163);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 25);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Mật khẩu:";
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(18, 200);
+            label5.Name = "label5";
+            label5.Size = new Size(99, 25);
+            label5.TabIndex = 18;
+            label5.Text = "Mật khẩu:";
             // 
             // txtRegFullName
             // 
-            this.txtRegFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegFullName.Location = new System.Drawing.Point(235, 109);
-            this.txtRegFullName.Name = "txtRegFullName";
-            this.txtRegFullName.Size = new System.Drawing.Size(273, 30);
-            this.txtRegFullName.TabIndex = 14;
+            txtRegFullName.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRegFullName.Location = new Point(235, 136);
+            txtRegFullName.Margin = new Padding(3, 4, 3, 4);
+            txtRegFullName.Name = "txtRegFullName";
+            txtRegFullName.Size = new Size(273, 30);
+            txtRegFullName.TabIndex = 14;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(44, 112);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 25);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Tên đầy đủ:";
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(12, 136);
+            label6.Name = "label6";
+            label6.Size = new Size(117, 25);
+            label6.TabIndex = 20;
+            label6.Text = "Tên đầy đủ:";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(273, 398);
+            button1.Name = "button1";
+            button1.Size = new Size(146, 40);
+            button1.TabIndex = 21;
+            button1.Text = "Quên mật khẩu";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(104, 408);
+            label1.Name = "label1";
+            label1.Size = new Size(153, 20);
+            label1.TabIndex = 22;
+            label1.Text = "Không nhớ mật khẩu?";
             // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 423);
-            this.Controls.Add(this.txtRegFullName);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtRegPassword);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.btnRegisterSubmit);
-            this.Controls.Add(this.txtRegConfirmPassword);
-            this.Controls.Add(this.txtRegUsername);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "RegisterForm";
-            this.Text = "RegisterForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RegisterForm_FormClosed);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(541, 529);
+            Controls.Add(label1);
+            Controls.Add(button1);
+            Controls.Add(txtRegFullName);
+            Controls.Add(label6);
+            Controls.Add(txtRegPassword);
+            Controls.Add(label5);
+            Controls.Add(btnLogin);
+            Controls.Add(btnRegisterSubmit);
+            Controls.Add(txtRegConfirmPassword);
+            Controls.Add(txtRegUsername);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(lbDangKy);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "RegisterForm";
+            Text = "RegisterForm";
+            FormClosed += RegisterForm_FormClosed;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -190,11 +220,13 @@
         private System.Windows.Forms.TextBox txtRegUsername;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbDangKy;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtRegPassword;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRegFullName;
         private System.Windows.Forms.Label label6;
+        private Button button1;
+        private Label label1;
     }
 }

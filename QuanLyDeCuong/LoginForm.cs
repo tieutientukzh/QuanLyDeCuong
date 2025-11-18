@@ -117,5 +117,9 @@ namespace QuanLyDeCuong
             Application.Exit();
         }
 
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            this.AcceptButton = btnLogin;
+        }
     }
 }
