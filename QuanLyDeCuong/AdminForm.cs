@@ -1,8 +1,6 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Text;
-using System.Windows.Forms;
 
 namespace QuanLyDeCuong
 {
@@ -147,11 +145,11 @@ namespace QuanLyDeCuong
                 {
                     // Kiểm tra Username đã tồn tại chưa
                     string checkQuery = "SELECT COUNT(*) FROM [User] WHERE Username = @Username";
-                    SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                    SqlCommand checkCmd = new SqlCommand(checkQuery, conn, transaction);
                     checkCmd.Parameters.AddWithValue("@Username", username);
                     int userCount = (int)checkCmd.ExecuteScalar();
 
-                    if (userCount > 0)
+                    if (userCount > 1)
                     {
                         MessageBox.Show("Tên đăng nhập này đã tồn tại. Vui lòng chọn tên khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;

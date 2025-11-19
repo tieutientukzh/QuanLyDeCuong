@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace QuanLyDeCuong
+﻿namespace QuanLyDeCuong
 {
     internal static class Program
     {
