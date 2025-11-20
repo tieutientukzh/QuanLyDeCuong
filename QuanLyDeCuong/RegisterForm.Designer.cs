@@ -158,7 +158,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(12, 136);
+            label6.Location = new Point(18, 136);
             label6.Name = "label6";
             label6.Size = new Size(117, 25);
             label6.TabIndex = 20;
@@ -183,7 +183,7 @@
             Controls.Add(lbDangKy);
             Margin = new Padding(3, 4, 3, 4);
             Name = "RegisterForm";
-            Text = "RegisterForm";
+            Text = "Đăng ký tài khoản";
             FormClosed += RegisterForm_FormClosed;
             ResumeLayout(false);
             PerformLayout();

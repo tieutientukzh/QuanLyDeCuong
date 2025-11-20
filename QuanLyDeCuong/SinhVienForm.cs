@@ -8,6 +8,8 @@ namespace QuanLyDeCuong
         public SinhVienForm()
         {
             InitializeComponent();
+            this.Text = "Sinh viên - " + CurrentUser.Username;
+            this.StartPosition = FormStartPosition.CenterParent;
         }
         private void SinhVienForm_Load(object sender, EventArgs e)
         {
@@ -24,11 +26,12 @@ namespace QuanLyDeCuong
         private void LoadDeCuongGrid(string searchTerm = "")
         {
             string query = @"
-                SELECT m.TenMonHoc, u.FullName AS TenGiangVien, d.Link
+                SELECT m.TenMonHoc as 'Tên môn học', u.FullName AS 'Tên giảng viên', d.Link, d.HocKy as 'Học kỳ', d.NgayCapNhat as 'Ngày cập nhật'
                 FROM DeCuong d
                 JOIN MonHoc m ON d.MonHocID = m.MonHocID
                 JOIN GiangVien g ON d.GiangVienID = g.GiangVienID
-                JOIN [User] u ON g.UserID = u.UserID";
+                JOIN [User] u ON g.UserID = u.UserID
+                ORDER BY m.TenMonHoc";
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
@@ -49,6 +52,7 @@ namespace QuanLyDeCuong
                 {
                     da.Fill(dt);
                     dgvDeCuong.DataSource = dt;
+                    dgvDeCuong.RowHeadersVisible = false;
                 }
                 catch (Exception ex)
                 {
@@ -59,7 +63,7 @@ namespace QuanLyDeCuong
 
         private void dgvDeCuong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvDeCuong.Rows.Count - 1)
             {
                 DataGridViewRow row = dgvDeCuong.Rows[e.RowIndex];
                 string link = row.Cells["Link"].Value.ToString();
@@ -86,6 +90,12 @@ namespace QuanLyDeCuong
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
             this.Close();
+        }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            DoiMatKhau doiMatKhau = new DoiMatKhau();
+            doiMatKhau.ShowDialog();
         }
     }
 }

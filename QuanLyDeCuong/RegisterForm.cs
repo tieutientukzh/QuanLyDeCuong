@@ -7,6 +7,7 @@ namespace QuanLyDeCuong
         public RegisterForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterParent;
         }
 
         private void btnRegisterSubmit_Click(object sender, EventArgs e)

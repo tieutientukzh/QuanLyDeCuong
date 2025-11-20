@@ -37,6 +37,7 @@
             label2 = new Label();
             label3 = new Label();
             btnLogout = new Button();
+            btnChangePass = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDeCuong).BeginInit();
             SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             txtSearch.Location = new Point(167, 111);
             txtSearch.Margin = new Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(423, 30);
+            txtSearch.Size = new Size(521, 30);
             txtSearch.TabIndex = 0;
             // 
             // txtLink
@@ -56,13 +57,13 @@
             txtLink.Location = new Point(167, 201);
             txtLink.Margin = new Padding(3, 4, 3, 4);
             txtLink.Name = "txtLink";
-            txtLink.Size = new Size(423, 30);
+            txtLink.Size = new Size(521, 30);
             txtLink.TabIndex = 1;
             // 
             // btnSearch
             // 
             btnSearch.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Location = new Point(614, 102);
+            btnSearch.Location = new Point(724, 98);
             btnSearch.Margin = new Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(105, 58);
@@ -74,7 +75,7 @@
             // btnCopyLink
             // 
             btnCopyLink.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCopyLink.Location = new Point(614, 196);
+            btnCopyLink.Location = new Point(724, 193);
             btnCopyLink.Margin = new Padding(3, 4, 3, 4);
             btnCopyLink.Name = "btnCopyLink";
             btnCopyLink.Size = new Size(105, 51);
@@ -86,13 +87,14 @@
             // dgvDeCuong
             // 
             dgvDeCuong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvDeCuong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDeCuong.ColumnHeadersHeight = 29;
+            dgvDeCuong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvDeCuong.Location = new Point(20, 285);
             dgvDeCuong.Margin = new Padding(3, 4, 3, 4);
             dgvDeCuong.Name = "dgvDeCuong";
             dgvDeCuong.RowHeadersWidth = 100;
             dgvDeCuong.RowTemplate.Height = 24;
-            dgvDeCuong.Size = new Size(758, 308);
+            dgvDeCuong.Size = new Size(878, 308);
             dgvDeCuong.TabIndex = 4;
             dgvDeCuong.CellClick += dgvDeCuong_CellClick;
             // 
@@ -100,7 +102,7 @@
             // 
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblWelcome.Location = new Point(282, 11);
+            lblWelcome.Location = new Point(229, 9);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(30, 25);
             lblWelcome.TabIndex = 5;
@@ -130,7 +132,7 @@
             // btnLogout
             // 
             btnLogout.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogout.Location = new Point(670, 15);
+            btnLogout.Location = new Point(790, 13);
             btnLogout.Margin = new Padding(3, 4, 3, 4);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(108, 45);
@@ -139,11 +141,22 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // btnChangePass
+            // 
+            btnChangePass.Location = new Point(652, 13);
+            btnChangePass.Name = "btnChangePass";
+            btnChangePass.Size = new Size(121, 45);
+            btnChangePass.TabIndex = 9;
+            btnChangePass.Text = "Đổi mật khẩu";
+            btnChangePass.UseVisualStyleBackColor = true;
+            btnChangePass.Click += btnChangePass_Click;
+            // 
             // SinhVienForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 608);
+            ClientSize = new Size(910, 608);
+            Controls.Add(btnChangePass);
             Controls.Add(btnLogout);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -174,5 +187,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLogout;
+        private Button btnChangePass;
     }
 }

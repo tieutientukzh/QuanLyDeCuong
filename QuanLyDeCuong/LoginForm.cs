@@ -7,6 +7,7 @@ namespace QuanLyDeCuong
         public LoginForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterParent;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

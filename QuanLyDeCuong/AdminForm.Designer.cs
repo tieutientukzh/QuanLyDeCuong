@@ -47,12 +47,13 @@
             label3 = new Label();
             label2 = new Label();
             tabPage2 = new TabPage();
+            btnReportGv = new Button();
             btnReportByLecturer = new Button();
             btnReportByCourse = new Button();
             btnExport = new Button();
             dgvReport = new DataGridView();
             btnLogout = new Button();
-            dlgSave = new SaveFileDialog();
+            btnChangePass = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvGiangVien).BeginInit();
@@ -138,7 +139,7 @@
             // 
             // btnDeleteGv
             // 
-            btnDeleteGv.Location = new Point(715, 87);
+            btnDeleteGv.Location = new Point(651, 87);
             btnDeleteGv.Margin = new Padding(3, 4, 3, 4);
             btnDeleteGv.Name = "btnDeleteGv";
             btnDeleteGv.Size = new Size(99, 37);
@@ -172,7 +173,8 @@
             // dgvGiangVien
             // 
             dgvGiangVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvGiangVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvGiangVien.ColumnHeadersHeight = 29;
+            dgvGiangVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvGiangVien.Location = new Point(34, 211);
             dgvGiangVien.Margin = new Padding(3, 4, 3, 4);
             dgvGiangVien.Name = "dgvGiangVien";
@@ -252,6 +254,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnReportGv);
             tabPage2.Controls.Add(btnReportByLecturer);
             tabPage2.Controls.Add(btnReportByCourse);
             tabPage2.Controls.Add(btnExport);
@@ -265,6 +268,16 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Báo cáo";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnReportGv
+            // 
+            btnReportGv.Location = new Point(759, 293);
+            btnReportGv.Name = "btnReportGv";
+            btnReportGv.Size = new Size(109, 73);
+            btnReportGv.TabIndex = 14;
+            btnReportGv.Text = "Danh sách giảng viên";
+            btnReportGv.UseVisualStyleBackColor = true;
+            btnReportGv.Click += btnReportGv_Click;
             // 
             // btnReportByLecturer
             // 
@@ -305,7 +318,8 @@
             // dgvReport
             // 
             dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReport.ColumnHeadersHeight = 29;
+            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvReport.Location = new Point(16, 21);
             dgvReport.Margin = new Padding(3, 4, 3, 4);
             dgvReport.Name = "dgvReport";
@@ -318,26 +332,37 @@
             // btnLogout
             // 
             btnLogout.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogout.Location = new Point(926, 301);
+            btnLogout.Location = new Point(916, 301);
             btnLogout.Margin = new Padding(3, 4, 3, 4);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(99, 49);
+            btnLogout.Size = new Size(109, 49);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Đăng xuất";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
+            // 
+            // btnChangePass
+            // 
+            btnChangePass.Location = new Point(919, 364);
+            btnChangePass.Name = "btnChangePass";
+            btnChangePass.Size = new Size(105, 48);
+            btnChangePass.TabIndex = 3;
+            btnChangePass.Text = "Đổi mật khẩu";
+            btnChangePass.UseVisualStyleBackColor = true;
+            btnChangePass.Click += btnChangePass_Click;
             // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1037, 719);
+            Controls.Add(btnChangePass);
             Controls.Add(btnLogout);
             Controls.Add(tabControl1);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "AdminForm";
-            Text = "AdminForm";
+            Text = "Admin";
             FormClosed += AdminForm_FormClosed;
             Load += AdminForm_Load;
             tabControl1.ResumeLayout(false);
@@ -377,6 +402,7 @@
         private Button btnGvSearch;
         private TextBox txtGv;
         private Label label6;
-        private SaveFileDialog dlgSave;
+        private Button btnReportGv;
+        private Button btnChangePass;
     }
 }

@@ -10,6 +10,8 @@ namespace QuanLyDeCuong
         public GiangVienForm()
         {
             InitializeComponent();
+            this.Text = "Giảng viên - " + CurrentUser.Username;
+            this.StartPosition = FormStartPosition.CenterParent;
             currentGiangVienID = CurrentUser.GiangVienID;
         }
         private void GiangVienForm_Load(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace QuanLyDeCuong
         private void LoadDeCuongGrid(string searchTerm = "")
         {
             string query = @"
-                SELECT d.DeCuongID, m.TenMonHoc, d.Link, d.MonHocID 
+                SELECT d.DeCuongID, d.MonHocID, m.TenMonHoc as 'Tên môn học', d.HocKy as 'Học kỳ', d.Link, d.NgayCapNhat as 'Ngày cập nhật' 
                 FROM DeCuong d 
                 JOIN MonHoc m ON d.MonHocID = m.MonHocID 
                 WHERE d.GiangVienID = @GiangVienID";
@@ -79,6 +81,7 @@ namespace QuanLyDeCuong
                 {
                     da.Fill(dt);
                     dgvDeCuong.DataSource = dt;
+                    dgvDeCuong.RowHeadersVisible = false;
 
                     // Ẩn các cột ID
                     dgvDeCuong.Columns["DeCuongID"].Visible = false;
@@ -93,7 +96,7 @@ namespace QuanLyDeCuong
 
         private void dgvDeCuong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvDeCuong.Rows.Count - 1)
             {
                 DataGridViewRow row = dgvDeCuong.Rows[e.RowIndex];
                 selectedDeCuongID = Convert.ToInt32(row.Cells["DeCuongID"].Value);
@@ -102,12 +105,16 @@ namespace QuanLyDeCuong
                 // Set ComboBox
                 int monHocID = Convert.ToInt32(row.Cells["MonHocID"].Value);
                 cmbMonHoc.SelectedValue = monHocID;
+                int hocKy = Convert.ToInt32(row.Cells["Học kỳ"].Value);
+                cmbHocKy.SelectedIndex = hocKy - 1;
             }
         }
 
         private void btnAddDeCuong_Click(object sender, EventArgs e)
         {
             int monHocID = (int)cmbMonHoc.SelectedValue;
+            int hocKy = cmbHocKy.SelectedIndex + 1;
+            DateTime dateTime = DateTime.Now;
             string link = txtLink.Text.Trim();
 
             if (string.IsNullOrEmpty(link))
@@ -116,7 +123,7 @@ namespace QuanLyDeCuong
                 return;
             }
 
-            string query = "INSERT INTO DeCuong (GiangVienID, MonHocID, Link) VALUES (@GiangVienID, @MonHocID, @Link)";
+            string query = "INSERT INTO DeCuong (GiangVienID, MonHocID, Link, HocKy, NgayCapNhat) VALUES (@GiangVienID, @MonHocID, @Link, @HocKy, @NgayCapNhat)";
 
             using (SqlConnection conn = KetNoiCSDL.GetConnection())
             {
@@ -124,6 +131,8 @@ namespace QuanLyDeCuong
                 cmd.Parameters.AddWithValue("@GiangVienID", currentGiangVienID);
                 cmd.Parameters.AddWithValue("@MonHocID", monHocID);
                 cmd.Parameters.AddWithValue("@Link", link);
+                cmd.Parameters.AddWithValue("@HocKy", hocKy);
+                cmd.Parameters.AddWithValue("@NgayCapNhat", dateTime);
 
                 try
                 {
@@ -149,15 +158,19 @@ namespace QuanLyDeCuong
             }
 
             int monHocID = (int)cmbMonHoc.SelectedValue;
+            int hocKy = cmbHocKy.SelectedIndex + 1;
+            DateTime dateTime = DateTime.Now;
             string link = txtLink.Text.Trim();
 
-            string query = "UPDATE DeCuong SET MonHocID = @MonHocID, Link = @Link WHERE DeCuongID = @DeCuongID AND GiangVienID = @GiangVienID";
+            string query = "UPDATE DeCuong SET MonHocID = @MonHocID, Link = @Link, HocKy = @HocKy, @NgayCapNhat WHERE DeCuongID = @DeCuongID AND GiangVienID = @GiangVienID";
 
             using (SqlConnection conn = KetNoiCSDL.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MonHocID", monHocID);
                 cmd.Parameters.AddWithValue("@Link", link);
+                cmd.Parameters.AddWithValue("@HocKy", hocKy);
+                cmd.Parameters.AddWithValue("@NgayCapNhat", dateTime);
                 cmd.Parameters.AddWithValue("@DeCuongID", selectedDeCuongID);
                 cmd.Parameters.AddWithValue("@GiangVienID", currentGiangVienID);
 
@@ -234,6 +247,7 @@ namespace QuanLyDeCuong
         {
             txtLink.Text = "";
             cmbMonHoc.SelectedIndex = 0;
+            cmbHocKy.SelectedIndex = 0;
             selectedDeCuongID = 0;
         }
 
@@ -243,6 +257,18 @@ namespace QuanLyDeCuong
             LoginForm loginForm = new LoginForm();
             loginForm.ShowDialog();
             this.Close();
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            XuatBaoCao xuatBaoCao = new XuatBaoCao();
+            xuatBaoCao.BaoCao(dgvDeCuong);
+        }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            DoiMatKhau doiMatKhau = new DoiMatKhau();
+            doiMatKhau.ShowDialog();
         }
     }
 }

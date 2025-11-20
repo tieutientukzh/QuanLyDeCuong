@@ -1,6 +1,7 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
-using Excel = Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Data;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace QuanLyDeCuong
 {
@@ -11,7 +12,8 @@ namespace QuanLyDeCuong
         private int selectedGiangVienId = 0;
         public AdminForm()
         {
-            InitializeComponent();
+            InitializeComponent();;
+            this.StartPosition = FormStartPosition.CenterParent;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -41,6 +43,7 @@ namespace QuanLyDeCuong
                 {
                     da.Fill(dt);
                     dgvGiangVien.DataSource = dt;
+                    dgvGiangVien.RowHeadersVisible = false;
 
                     // Ẩn các cột không cần thiết
                     dgvGiangVien.Columns["UserID"].Visible = false;
@@ -56,13 +59,13 @@ namespace QuanLyDeCuong
 
         private void dgvGiangVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvGiangVien.Rows.Count - 1)
             {
                 DataGridViewRow row = dgvGiangVien.Rows[e.RowIndex];
                 selectedGiangVienId = Convert.ToInt32(row.Cells["GiangVienID"].Value);
                 selectedUserId = Convert.ToInt32(row.Cells["UserID"].Value);
 
-                txtGvFullName.Text = row.Cells["FullName"].Value.ToString();
+                txtGvFullName.Text = row.Cells["Tên giảng viên"].Value.ToString();
                 txtGvEmail.Text = row.Cells["Email"].Value.ToString();
                 txtGvUsername.Text = row.Cells["Username"].Value.ToString();
                 txtGvPassword.Text = row.Cells["Password"].Value.ToString();
@@ -257,11 +260,11 @@ namespace QuanLyDeCuong
         private void btnReportByCourse_Click(object sender, EventArgs e)
         {
             string query = @"
-                SELECT m.TenMonHoc as 'Tên môn học', d.Link
+                SELECT m.TenMonHoc as 'Tên môn học', d.HocKy as 'Học kỳ', d.Link, d.NgayCapNhat as 'Ngày cập nhật'
                 FROM MonHoc m
                 LEFT JOIN DeCuong d ON m.MonHocID = d.MonHocID
                 WHERE d.Link != ''
-                ORDER BY m.TenMonHoc";
+                ORDER BY m.TenMonHoc ASC, d.NgayCapNhat ASC";
 
             LoadReport(query);
         }
@@ -289,6 +292,7 @@ namespace QuanLyDeCuong
                 {
                     da.Fill(dt);
                     dgvReport.DataSource = dt;
+                    dgvReport.RowHeadersVisible = false;
                 }
                 catch (Exception ex)
                 {
@@ -305,126 +309,8 @@ namespace QuanLyDeCuong
                 return;
             }
 
-            Excel.Application exApp = null;
-            Excel.Workbook exBook = null;
-            Excel.Worksheet exSheet = null;
-
-            try
-            {
-                // Khởi tạo Excel
-                exApp = new Excel.Application();
-                exBook = exApp.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
-                exSheet = (Excel.Worksheet)exBook.Worksheets[1];
-
-                // 1. Định dạng tiêu đề chung
-                // Hàng 1: Tên hệ thống
-                Excel.Range qldc = (Excel.Range)exSheet.Cells[1, 1];
-                qldc.Font.Size = 12;
-                qldc.Font.Bold = true;
-                qldc.Font.Color = Color.Blue;
-                qldc.Value = "HỆ THỐNG QUẢN LÝ ĐỀ CƯƠNG MÔN HỌC";
-                // Merge vài cột để nhìn đẹp hơn
-                exSheet.Range["A1:D1"].Merge();
-
-                // Hàng 2: Người thực hiện báo cáo
-                Excel.Range nguoiBaoCao = (Excel.Range)exSheet.Cells[2, 1];
-                nguoiBaoCao.Font.Size = 11;
-                nguoiBaoCao.Font.Bold = false;
-                nguoiBaoCao.Value = "Người xuất báo cáo: " + (CurrentUser.FullName ?? "Admin");
-                exSheet.Range["A2:D2"].Merge();
-
-                // Hàng 4: Tiêu đề báo cáo
-                Excel.Range header = (Excel.Range)exSheet.Cells[4, 2];
-                exSheet.Range["A4:D4"].Merge();
-                exSheet.Range["A4"].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                header = exSheet.Range["A4"]; // Trỏ lại vào ô đã merge
-                header.Font.Size = 14;
-                header.Font.Bold = true;
-                header.Font.Color = Color.Red;
-                header.Value = "BÁO CÁO THỐNG KÊ SỐ LIỆU";
-
-                // 2. Định dạng tiêu đề cột (Bắt đầu từ dòng 6)
-                int headerRow = 6;
-                // Cột STT
-                exSheet.Cells[headerRow, 1] = "STT";
-                ((Excel.Range)exSheet.Cells[headerRow, 1]).Font.Bold = true;
-                ((Excel.Range)exSheet.Cells[headerRow, 1]).Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
-                // Các cột dữ liệu lấy từ DataGridView
-                for (int i = 0; i < dgvReport.Columns.Count; i++)
-                {
-                    // Cột Excel bắt đầu từ 2 (vì 1 là STT)
-                    Excel.Range colHeader = (Excel.Range)exSheet.Cells[headerRow, i + 2];
-                    colHeader.Value = dgvReport.Columns[i].HeaderText;
-                    colHeader.Font.Bold = true;
-                    colHeader.ColumnWidth = 25;
-                    colHeader.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    colHeader.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                }
-
-                // 3. Đổ dữ liệu
-                for (int i = 0; i < dgvReport.Rows.Count; i++)
-                {
-                    // Bỏ qua dòng trống cuối cùng của DataGridView (nếu có)
-                    if (dgvReport.Rows[i].IsNewRow) continue;
-
-                    int currentRow = headerRow + 1 + i;
-
-                    // Ghi STT
-                    Excel.Range cellSTT = (Excel.Range)exSheet.Cells[currentRow, 1];
-                    cellSTT.Value = i + 1;
-                    cellSTT.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    cellSTT.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-
-                    // Ghi dữ liệu các cột
-                    for (int j = 0; j < dgvReport.Columns.Count; j++)
-                    {
-                        Excel.Range cellData = (Excel.Range)exSheet.Cells[currentRow, j + 2];
-                        if (dgvReport.Rows[i].Cells[j].Value != null)
-                        {
-                            cellData.Value = dgvReport.Rows[i].Cells[j].Value.ToString();
-                        }
-                        cellData.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                    }
-                }
-
-                // Đặt tên sheet
-                exSheet.Name = "BaoCao";
-
-                // 4. Lưu file
-                exBook.Activate();
-                SaveFileDialog dlgSave = new SaveFileDialog();
-                dlgSave.Filter = "Excel Document(*.xlsx)|*.xlsx|Excel 97-2003(*.xls)|*.xls";
-                dlgSave.AddExtension = true;
-                dlgSave.DefaultExt = ".xlsx";
-
-                if (dlgSave.ShowDialog() == DialogResult.OK)
-                {
-                    exBook.SaveAs(dlgSave.FileName);
-                    MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    exApp.Visible = true;
-                }
-                else
-                {
-                    exBook.Close(false);
-                    exApp.Quit();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Có lỗi khi xuất Excel: " + ex.Message + "\n\nHãy đảm bảo máy tính đã cài Microsoft Office.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // Dọn dẹp nếu lỗi
-                if (exBook != null) exBook.Close(false);
-                if (exApp != null) exApp.Quit();
-            }
-            finally
-            {
-                // Giải phóng tài nguyên COM để tránh ứng dụng Excel chạy ngầm
-                if (exSheet != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(exSheet);
-                if (exBook != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(exBook);
-                if (exApp != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(exApp);
-            }
+            XuatBaoCao xuat = new XuatBaoCao();
+            xuat.BaoCao(dgvReport);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -443,6 +329,21 @@ namespace QuanLyDeCuong
         {
             string searchTerm = txtGv.Text.Trim();
             LoadGiangVienData(searchTerm);
+        }
+
+        private void btnReportGv_Click(object sender, EventArgs e)
+        {
+            string query = $"" +
+                $"SELECT u.FullName as 'Tên giảng viên'," +
+                $" g.Email " +
+                $"FROM GiangVien g JOIN [User] u ON g.UserID = u.UserID";
+            LoadReport(query);
+        }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            DoiMatKhau doiMatKhau = new DoiMatKhau();
+            doiMatKhau.ShowDialog();
         }
     }
 }
