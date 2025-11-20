@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using System.Text;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDeCuong
 {
@@ -19,12 +19,23 @@ namespace QuanLyDeCuong
             LoadGiangVienData();
         }
 
-        private void LoadGiangVienData()
+        private void LoadGiangVienData(string searchTerm = "")
         {
+            string query = "SELECT g.GiangVienID, u.UserID, u.FullName as 'Tên giảng viên', g.Email, u.Username, u.Password FROM GiangVien g JOIN [User] u ON g.UserID = u.UserID";
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query += " WHERE u.FullName LIKE @SearchTerm OR g.Email LIKE @SearchTerm";
+            }
             using (SqlConnection conn = KetNoiCSDL.GetConnection())
             {
-                string query = "SELECT g.GiangVienID, u.UserID, u.FullName, g.Email, u.Username, u.Password FROM GiangVien g JOIN [User] u ON g.UserID = u.UserID";
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                }
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 try
                 {
@@ -246,10 +257,10 @@ namespace QuanLyDeCuong
         private void btnReportByCourse_Click(object sender, EventArgs e)
         {
             string query = @"
-                SELECT m.TenMonHoc, COUNT(d.DeCuongID) AS SoLuongDeCuong
+                SELECT m.TenMonHoc as 'Tên môn học', d.Link
                 FROM MonHoc m
                 LEFT JOIN DeCuong d ON m.MonHocID = d.MonHocID
-                GROUP BY m.TenMonHoc
+                WHERE d.Link != ''
                 ORDER BY m.TenMonHoc";
 
             LoadReport(query);
@@ -258,7 +269,7 @@ namespace QuanLyDeCuong
         private void btnReportByLecturer_Click(object sender, EventArgs e)
         {
             string query = @"
-                SELECT u.FullName, COUNT(d.DeCuongID) AS SoLuongDeCuong
+                SELECT u.FullName as 'Tên giảng viên', COUNT(d.DeCuongID) AS 'Số lượng đề cương'
                 FROM GiangVien g
                 JOIN [User] u ON g.UserID = u.UserID
                 LEFT JOIN DeCuong d ON g.GiangVienID = d.GiangVienID
@@ -290,47 +301,129 @@ namespace QuanLyDeCuong
         {
             if (dgvReport.Rows.Count == 0)
             {
-                MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Không có dữ liệu để in/xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Logic xuất file (ví dụ: CSV)
+            Excel.Application exApp = null;
+            Excel.Workbook exBook = null;
+            Excel.Worksheet exSheet = null;
+
             try
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "CSV Files (*.csv)|*.csv";
-                sfd.FileName = "BaoCao.csv";
-                if (sfd.ShowDialog() == DialogResult.OK)
+                // Khởi tạo Excel
+                exApp = new Excel.Application();
+                exBook = exApp.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
+                exSheet = (Excel.Worksheet)exBook.Worksheets[1];
+
+                // 1. Định dạng tiêu đề chung
+                // Hàng 1: Tên hệ thống
+                Excel.Range qldc = (Excel.Range)exSheet.Cells[1, 1];
+                qldc.Font.Size = 12;
+                qldc.Font.Bold = true;
+                qldc.Font.Color = Color.Blue;
+                qldc.Value = "HỆ THỐNG QUẢN LÝ ĐỀ CƯƠNG MÔN HỌC";
+                // Merge vài cột để nhìn đẹp hơn
+                exSheet.Range["A1:D1"].Merge();
+
+                // Hàng 2: Người thực hiện báo cáo
+                Excel.Range nguoiBaoCao = (Excel.Range)exSheet.Cells[2, 1];
+                nguoiBaoCao.Font.Size = 11;
+                nguoiBaoCao.Font.Bold = false;
+                nguoiBaoCao.Value = "Người xuất báo cáo: " + (CurrentUser.FullName ?? "Admin");
+                exSheet.Range["A2:D2"].Merge();
+
+                // Hàng 4: Tiêu đề báo cáo
+                Excel.Range header = (Excel.Range)exSheet.Cells[4, 2];
+                exSheet.Range["A4:D4"].Merge();
+                exSheet.Range["A4"].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                header = exSheet.Range["A4"]; // Trỏ lại vào ô đã merge
+                header.Font.Size = 14;
+                header.Font.Bold = true;
+                header.Font.Color = Color.Red;
+                header.Value = "BÁO CÁO THỐNG KÊ SỐ LIỆU";
+
+                // 2. Định dạng tiêu đề cột (Bắt đầu từ dòng 6)
+                int headerRow = 6;
+                // Cột STT
+                exSheet.Cells[headerRow, 1] = "STT";
+                ((Excel.Range)exSheet.Cells[headerRow, 1]).Font.Bold = true;
+                ((Excel.Range)exSheet.Cells[headerRow, 1]).Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+                // Các cột dữ liệu lấy từ DataGridView
+                for (int i = 0; i < dgvReport.Columns.Count; i++)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    // Cột Excel bắt đầu từ 2 (vì 1 là STT)
+                    Excel.Range colHeader = (Excel.Range)exSheet.Cells[headerRow, i + 2];
+                    colHeader.Value = dgvReport.Columns[i].HeaderText;
+                    colHeader.Font.Bold = true;
+                    colHeader.ColumnWidth = 25;
+                    colHeader.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    colHeader.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                }
 
-                    // Add header
-                    for (int i = 0; i < dgvReport.Columns.Count; i++)
-                    {
-                        sb.Append(dgvReport.Columns[i].HeaderText);
-                        if (i < dgvReport.Columns.Count - 1) sb.Append(";");
-                    }
-                    sb.AppendLine();
+                // 3. Đổ dữ liệu
+                for (int i = 0; i < dgvReport.Rows.Count; i++)
+                {
+                    // Bỏ qua dòng trống cuối cùng của DataGridView (nếu có)
+                    if (dgvReport.Rows[i].IsNewRow) continue;
 
-                    // Add rows
-                    foreach (DataGridViewRow row in dgvReport.Rows)
+                    int currentRow = headerRow + 1 + i;
+
+                    // Ghi STT
+                    Excel.Range cellSTT = (Excel.Range)exSheet.Cells[currentRow, 1];
+                    cellSTT.Value = i + 1;
+                    cellSTT.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    cellSTT.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    // Ghi dữ liệu các cột
+                    for (int j = 0; j < dgvReport.Columns.Count; j++)
                     {
-                        for (int i = 0; i < dgvReport.Columns.Count; i++)
+                        Excel.Range cellData = (Excel.Range)exSheet.Cells[currentRow, j + 2];
+                        if (dgvReport.Rows[i].Cells[j].Value != null)
                         {
-                            string cellValue = row.Cells[i].Value?.ToString() ?? "";
-                            sb.Append(cellValue);
-                            if (i < dgvReport.Columns.Count - 1) sb.Append(";");
+                            cellData.Value = dgvReport.Rows[i].Cells[j].Value.ToString();
                         }
-                        sb.AppendLine();
+                        cellData.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     }
+                }
 
-                    System.IO.File.WriteAllText(sfd.FileName, sb.ToString(), Encoding.UTF8);
-                    MessageBox.Show("Xuất báo cáo thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Đặt tên sheet
+                exSheet.Name = "BaoCao";
+
+                // 4. Lưu file
+                exBook.Activate();
+                SaveFileDialog dlgSave = new SaveFileDialog();
+                dlgSave.Filter = "Excel Document(*.xlsx)|*.xlsx|Excel 97-2003(*.xls)|*.xls";
+                dlgSave.AddExtension = true;
+                dlgSave.DefaultExt = ".xlsx";
+
+                if (dlgSave.ShowDialog() == DialogResult.OK)
+                {
+                    exBook.SaveAs(dlgSave.FileName);
+                    MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    exApp.Visible = true;
+                }
+                else
+                {
+                    exBook.Close(false);
+                    exApp.Quit();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Có lỗi khi xuất Excel: " + ex.Message + "\n\nHãy đảm bảo máy tính đã cài Microsoft Office.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Dọn dẹp nếu lỗi
+                if (exBook != null) exBook.Close(false);
+                if (exApp != null) exApp.Quit();
+            }
+            finally
+            {
+                // Giải phóng tài nguyên COM để tránh ứng dụng Excel chạy ngầm
+                if (exSheet != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(exSheet);
+                if (exBook != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(exBook);
+                if (exApp != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(exApp);
             }
         }
 
@@ -344,6 +437,12 @@ namespace QuanLyDeCuong
         private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnGvSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtGv.Text.Trim();
+            LoadGiangVienData(searchTerm);
         }
     }
 }

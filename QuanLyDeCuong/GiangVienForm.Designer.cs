@@ -28,178 +28,189 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbMonHoc = new System.Windows.Forms.ComboBox();
-            this.txtLink = new System.Windows.Forms.TextBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.dgvDeCuong = new System.Windows.Forms.DataGridView();
-            this.btnAddDeCuong = new System.Windows.Forms.Button();
-            this.btnEditDeCuong = new System.Windows.Forms.Button();
-            this.btnDeleteDeCuong = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.lblWelcome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeCuong)).BeginInit();
-            this.SuspendLayout();
+            cmbMonHoc = new ComboBox();
+            txtLink = new TextBox();
+            txtSearch = new TextBox();
+            dgvDeCuong = new DataGridView();
+            btnAddDeCuong = new Button();
+            btnEditDeCuong = new Button();
+            btnDeleteDeCuong = new Button();
+            btnSearch = new Button();
+            lblWelcome = new Label();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            btnLogout = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvDeCuong).BeginInit();
+            SuspendLayout();
             // 
             // cmbMonHoc
             // 
-            this.cmbMonHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMonHoc.FormattingEnabled = true;
-            this.cmbMonHoc.Location = new System.Drawing.Point(122, 63);
-            this.cmbMonHoc.Name = "cmbMonHoc";
-            this.cmbMonHoc.Size = new System.Drawing.Size(257, 28);
-            this.cmbMonHoc.TabIndex = 0;
+            cmbMonHoc.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbMonHoc.FormattingEnabled = true;
+            cmbMonHoc.Location = new Point(122, 79);
+            cmbMonHoc.Margin = new Padding(3, 4, 3, 4);
+            cmbMonHoc.Name = "cmbMonHoc";
+            cmbMonHoc.Size = new Size(257, 28);
+            cmbMonHoc.TabIndex = 0;
             // 
             // txtLink
             // 
-            this.txtLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLink.Location = new System.Drawing.Point(122, 114);
-            this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(368, 27);
-            this.txtLink.TabIndex = 1;
+            txtLink.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLink.Location = new Point(122, 142);
+            txtLink.Margin = new Padding(3, 4, 3, 4);
+            txtLink.Name = "txtLink";
+            txtLink.Size = new Size(368, 27);
+            txtLink.TabIndex = 1;
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(122, 174);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(257, 27);
-            this.txtSearch.TabIndex = 2;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(122, 218);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(257, 27);
+            txtSearch.TabIndex = 2;
             // 
             // dgvDeCuong
             // 
-            this.dgvDeCuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDeCuong.Location = new System.Drawing.Point(16, 230);
-            this.dgvDeCuong.Name = "dgvDeCuong";
-            this.dgvDeCuong.RowHeadersWidth = 51;
-            this.dgvDeCuong.RowTemplate.Height = 24;
-            this.dgvDeCuong.Size = new System.Drawing.Size(626, 351);
-            this.dgvDeCuong.TabIndex = 3;
-            this.dgvDeCuong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeCuong_CellClick);
+            dgvDeCuong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDeCuong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDeCuong.Location = new Point(16, 288);
+            dgvDeCuong.Margin = new Padding(3, 4, 3, 4);
+            dgvDeCuong.Name = "dgvDeCuong";
+            dgvDeCuong.RowHeadersWidth = 51;
+            dgvDeCuong.RowTemplate.Height = 24;
+            dgvDeCuong.Size = new Size(626, 439);
+            dgvDeCuong.TabIndex = 3;
+            dgvDeCuong.CellClick += dgvDeCuong_CellClick;
             // 
             // btnAddDeCuong
             // 
-            this.btnAddDeCuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddDeCuong.Location = new System.Drawing.Point(535, 66);
-            this.btnAddDeCuong.Name = "btnAddDeCuong";
-            this.btnAddDeCuong.Size = new System.Drawing.Size(80, 36);
-            this.btnAddDeCuong.TabIndex = 4;
-            this.btnAddDeCuong.Text = "Thêm";
-            this.btnAddDeCuong.UseVisualStyleBackColor = true;
-            this.btnAddDeCuong.Click += new System.EventHandler(this.btnAddDeCuong_Click);
+            btnAddDeCuong.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAddDeCuong.Location = new Point(535, 82);
+            btnAddDeCuong.Margin = new Padding(3, 4, 3, 4);
+            btnAddDeCuong.Name = "btnAddDeCuong";
+            btnAddDeCuong.Size = new Size(80, 45);
+            btnAddDeCuong.TabIndex = 4;
+            btnAddDeCuong.Text = "Thêm";
+            btnAddDeCuong.UseVisualStyleBackColor = true;
+            btnAddDeCuong.Click += btnAddDeCuong_Click;
             // 
             // btnEditDeCuong
             // 
-            this.btnEditDeCuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDeCuong.Location = new System.Drawing.Point(535, 121);
-            this.btnEditDeCuong.Name = "btnEditDeCuong";
-            this.btnEditDeCuong.Size = new System.Drawing.Size(80, 35);
-            this.btnEditDeCuong.TabIndex = 5;
-            this.btnEditDeCuong.Text = "Sửa";
-            this.btnEditDeCuong.UseVisualStyleBackColor = true;
-            this.btnEditDeCuong.Click += new System.EventHandler(this.btnEditDeCuong_Click);
+            btnEditDeCuong.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEditDeCuong.Location = new Point(535, 151);
+            btnEditDeCuong.Margin = new Padding(3, 4, 3, 4);
+            btnEditDeCuong.Name = "btnEditDeCuong";
+            btnEditDeCuong.Size = new Size(80, 44);
+            btnEditDeCuong.TabIndex = 5;
+            btnEditDeCuong.Text = "Sửa";
+            btnEditDeCuong.UseVisualStyleBackColor = true;
+            btnEditDeCuong.Click += btnEditDeCuong_Click;
             // 
             // btnDeleteDeCuong
             // 
-            this.btnDeleteDeCuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteDeCuong.Location = new System.Drawing.Point(535, 174);
-            this.btnDeleteDeCuong.Name = "btnDeleteDeCuong";
-            this.btnDeleteDeCuong.Size = new System.Drawing.Size(80, 35);
-            this.btnDeleteDeCuong.TabIndex = 6;
-            this.btnDeleteDeCuong.Text = "Xóa";
-            this.btnDeleteDeCuong.UseVisualStyleBackColor = true;
-            this.btnDeleteDeCuong.Click += new System.EventHandler(this.btnDeleteDeCuong_Click);
+            btnDeleteDeCuong.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDeleteDeCuong.Location = new Point(535, 218);
+            btnDeleteDeCuong.Margin = new Padding(3, 4, 3, 4);
+            btnDeleteDeCuong.Name = "btnDeleteDeCuong";
+            btnDeleteDeCuong.Size = new Size(80, 44);
+            btnDeleteDeCuong.TabIndex = 6;
+            btnDeleteDeCuong.Text = "Xóa";
+            btnDeleteDeCuong.UseVisualStyleBackColor = true;
+            btnDeleteDeCuong.Click += btnDeleteDeCuong_Click;
             // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(385, 169);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(105, 37);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.Location = new Point(385, 211);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(105, 46);
+            btnSearch.TabIndex = 7;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // lblWelcome
             // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(197, 20);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(26, 20);
-            this.lblWelcome.TabIndex = 8;
-            this.lblWelcome.Text = "Hi";
-            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcome.Location = new Point(197, 25);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(26, 20);
+            lblWelcome.TabIndex = 8;
+            lblWelcome.Text = "Hi";
+            lblWelcome.TextAlign = ContentAlignment.TopCenter;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Môn học:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(25, 82);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 20);
+            label1.TabIndex = 9;
+            label1.Text = "Môn học:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 117);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 20);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Link:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(25, 146);
+            label2.Name = "label2";
+            label2.Size = new Size(45, 20);
+            label2.TabIndex = 10;
+            label2.Text = "Link:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(25, 177);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Tìm kiếm:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(25, 221);
+            label3.Name = "label3";
+            label3.Size = new Size(82, 20);
+            label3.TabIndex = 11;
+            label3.Text = "Tìm kiếm:";
             // 
             // btnLogout
             // 
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(562, 12);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(95, 44);
-            this.btnLogout.TabIndex = 12;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            btnLogout.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogout.Location = new Point(562, 15);
+            btnLogout.Margin = new Padding(3, 4, 3, 4);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(95, 55);
+            btnLogout.TabIndex = 12;
+            btnLogout.Text = "Đăng xuất";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // GiangVienForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 593);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.btnDeleteDeCuong);
-            this.Controls.Add(this.btnEditDeCuong);
-            this.Controls.Add(this.btnAddDeCuong);
-            this.Controls.Add(this.dgvDeCuong);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.txtLink);
-            this.Controls.Add(this.cmbMonHoc);
-            this.Name = "GiangVienForm";
-            this.Text = "GiangVienForm";
-            this.Load += new System.EventHandler(this.GiangVienForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeCuong)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(669, 741);
+            Controls.Add(btnLogout);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(lblWelcome);
+            Controls.Add(btnSearch);
+            Controls.Add(btnDeleteDeCuong);
+            Controls.Add(btnEditDeCuong);
+            Controls.Add(btnAddDeCuong);
+            Controls.Add(dgvDeCuong);
+            Controls.Add(txtSearch);
+            Controls.Add(txtLink);
+            Controls.Add(cmbMonHoc);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "GiangVienForm";
+            Text = "GiangVienForm";
+            Load += GiangVienForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvDeCuong).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

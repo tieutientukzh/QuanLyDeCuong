@@ -31,6 +31,9 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            btnGvSearch = new Button();
+            txtGv = new TextBox();
+            label6 = new Label();
             btnDeleteGv = new Button();
             btnEditGv = new Button();
             btnAddGv = new Button();
@@ -49,6 +52,7 @@
             btnExport = new Button();
             dgvReport = new DataGridView();
             btnLogout = new Button();
+            dlgSave = new SaveFileDialog();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvGiangVien).BeginInit();
@@ -81,6 +85,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(btnGvSearch);
+            tabPage1.Controls.Add(txtGv);
+            tabPage1.Controls.Add(label6);
             tabPage1.Controls.Add(btnDeleteGv);
             tabPage1.Controls.Add(btnEditGv);
             tabPage1.Controls.Add(btnAddGv);
@@ -103,12 +110,38 @@
             tabPage1.Text = "Quản lý giảng viên";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnGvSearch
+            // 
+            btnGvSearch.Location = new Point(656, 151);
+            btnGvSearch.Name = "btnGvSearch";
+            btnGvSearch.Size = new Size(94, 38);
+            btnGvSearch.TabIndex = 6;
+            btnGvSearch.Text = "Tìm kiếm";
+            btnGvSearch.UseVisualStyleBackColor = true;
+            btnGvSearch.Click += btnGvSearch_Click;
+            // 
+            // txtGv
+            // 
+            txtGv.Location = new Point(128, 158);
+            txtGv.Name = "txtGv";
+            txtGv.Size = new Size(502, 24);
+            txtGv.TabIndex = 5;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(50, 163);
+            label6.Name = "label6";
+            label6.Size = new Size(73, 18);
+            label6.TabIndex = 12;
+            label6.Text = "Tìm kiếm:";
+            // 
             // btnDeleteGv
             // 
-            btnDeleteGv.Location = new Point(636, 100);
+            btnDeleteGv.Location = new Point(715, 87);
             btnDeleteGv.Margin = new Padding(3, 4, 3, 4);
             btnDeleteGv.Name = "btnDeleteGv";
-            btnDeleteGv.Size = new Size(99, 54);
+            btnDeleteGv.Size = new Size(99, 37);
             btnDeleteGv.TabIndex = 11;
             btnDeleteGv.Text = "Xóa";
             btnDeleteGv.UseVisualStyleBackColor = true;
@@ -116,10 +149,10 @@
             // 
             // btnEditGv
             // 
-            btnEditGv.Location = new Point(769, 25);
+            btnEditGv.Location = new Point(769, 32);
             btnEditGv.Margin = new Padding(3, 4, 3, 4);
             btnEditGv.Name = "btnEditGv";
-            btnEditGv.Size = new Size(100, 55);
+            btnEditGv.Size = new Size(100, 37);
             btnEditGv.TabIndex = 10;
             btnEditGv.Text = "Sửa";
             btnEditGv.UseVisualStyleBackColor = true;
@@ -127,10 +160,10 @@
             // 
             // btnAddGv
             // 
-            btnAddGv.Location = new Point(636, 25);
+            btnAddGv.Location = new Point(651, 32);
             btnAddGv.Margin = new Padding(3, 4, 3, 4);
             btnAddGv.Name = "btnAddGv";
-            btnAddGv.Size = new Size(99, 55);
+            btnAddGv.Size = new Size(99, 37);
             btnAddGv.TabIndex = 9;
             btnAddGv.Text = "Thêm";
             btnAddGv.UseVisualStyleBackColor = true;
@@ -138,6 +171,7 @@
             // 
             // dgvGiangVien
             // 
+            dgvGiangVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvGiangVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvGiangVien.Location = new Point(34, 211);
             dgvGiangVien.Margin = new Padding(3, 4, 3, 4);
@@ -150,16 +184,16 @@
             // 
             // txtGvPassword
             // 
-            txtGvPassword.Location = new Point(459, 124);
+            txtGvPassword.Location = new Point(459, 100);
             txtGvPassword.Margin = new Padding(3, 4, 3, 4);
             txtGvPassword.Name = "txtGvPassword";
-            txtGvPassword.Size = new Size(157, 24);
-            txtGvPassword.TabIndex = 7;
+            txtGvPassword.Size = new Size(171, 24);
+            txtGvPassword.TabIndex = 4;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(380, 128);
+            label5.Location = new Point(380, 106);
             label5.Name = "label5";
             label5.Size = new Size(73, 18);
             label5.TabIndex = 6;
@@ -170,24 +204,24 @@
             txtGvUsername.Location = new Point(459, 38);
             txtGvUsername.Margin = new Padding(3, 4, 3, 4);
             txtGvUsername.Name = "txtGvUsername";
-            txtGvUsername.Size = new Size(157, 24);
-            txtGvUsername.TabIndex = 5;
+            txtGvUsername.Size = new Size(171, 24);
+            txtGvUsername.TabIndex = 3;
             // 
             // txtGvEmail
             // 
-            txtGvEmail.Location = new Point(118, 124);
+            txtGvEmail.Location = new Point(128, 100);
             txtGvEmail.Margin = new Padding(3, 4, 3, 4);
             txtGvEmail.Name = "txtGvEmail";
             txtGvEmail.Size = new Size(233, 24);
-            txtGvEmail.TabIndex = 4;
+            txtGvEmail.TabIndex = 2;
             // 
             // txtGvFullName
             // 
-            txtGvFullName.Location = new Point(118, 38);
+            txtGvFullName.Location = new Point(128, 38);
             txtGvFullName.Margin = new Padding(3, 4, 3, 4);
             txtGvFullName.Name = "txtGvFullName";
             txtGvFullName.Size = new Size(233, 24);
-            txtGvFullName.TabIndex = 3;
+            txtGvFullName.TabIndex = 1;
             // 
             // label4
             // 
@@ -201,7 +235,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(52, 124);
+            label3.Location = new Point(50, 106);
             label3.Name = "label3";
             label3.Size = new Size(49, 18);
             label3.TabIndex = 1;
@@ -270,6 +304,7 @@
             // 
             // dgvReport
             // 
+            dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvReport.Location = new Point(16, 21);
             dgvReport.Margin = new Padding(3, 4, 3, 4);
@@ -339,5 +374,9 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.DataGridView dgvReport;
         private System.Windows.Forms.Button btnLogout;
+        private Button btnGvSearch;
+        private TextBox txtGv;
+        private Label label6;
+        private SaveFileDialog dlgSave;
     }
 }

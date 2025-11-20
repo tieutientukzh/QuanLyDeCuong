@@ -40,14 +40,12 @@
             label5 = new Label();
             txtRegFullName = new TextBox();
             label6 = new Label();
-            button1 = new Button();
-            label1 = new Label();
             SuspendLayout();
             // 
             // btnLogin
             // 
             btnLogin.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(273, 455);
+            btnLogin.Location = new Point(291, 395);
             btnLogin.Margin = new Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(146, 43);
@@ -59,10 +57,10 @@
             // btnRegisterSubmit
             // 
             btnRegisterSubmit.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRegisterSubmit.Location = new Point(104, 315);
+            btnRegisterSubmit.Location = new Point(18, 315);
             btnRegisterSubmit.Margin = new Padding(3, 4, 3, 4);
             btnRegisterSubmit.Name = "btnRegisterSubmit";
-            btnRegisterSubmit.Size = new Size(315, 47);
+            btnRegisterSubmit.Size = new Size(490, 47);
             btnRegisterSubmit.TabIndex = 17;
             btnRegisterSubmit.Text = "Đăng ký";
             btnRegisterSubmit.UseVisualStyleBackColor = true;
@@ -101,7 +99,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 75);
+            label2.Location = new Point(18, 75);
             label2.Name = "label2";
             label2.Size = new Size(105, 25);
             label2.TabIndex = 10;
@@ -121,7 +119,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(104, 466);
+            label4.Location = new Point(102, 406);
             label4.Name = "label4";
             label4.Size = new Size(134, 20);
             label4.TabIndex = 12;
@@ -166,32 +164,11 @@
             label6.TabIndex = 20;
             label6.Text = "Tên đầy đủ:";
             // 
-            // button1
-            // 
-            button1.Location = new Point(273, 398);
-            button1.Name = "button1";
-            button1.Size = new Size(146, 40);
-            button1.TabIndex = 21;
-            button1.Text = "Quên mật khẩu";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(104, 408);
-            label1.Name = "label1";
-            label1.Size = new Size(153, 20);
-            label1.TabIndex = 22;
-            label1.Text = "Không nhớ mật khẩu?";
-            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(541, 529);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            ClientSize = new Size(541, 459);
             Controls.Add(txtRegFullName);
             Controls.Add(label6);
             Controls.Add(txtRegPassword);
@@ -226,7 +203,5 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRegFullName;
         private System.Windows.Forms.Label label6;
-        private Button button1;
-        private Label label1;
     }
 }

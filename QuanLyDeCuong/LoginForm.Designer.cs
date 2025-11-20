@@ -36,6 +36,7 @@
             btnLogin = new Button();
             btnRegister = new Button();
             label4 = new Label();
+            btnForgetPassword = new Button();
             SuspendLayout();
             // 
             // label1
@@ -52,7 +53,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(6, 120);
+            label2.Location = new Point(12, 120);
             label2.Name = "label2";
             label2.Size = new Size(105, 25);
             label2.TabIndex = 1;
@@ -71,29 +72,29 @@
             // txtUsername
             // 
             txtUsername.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUsername.Location = new Point(172, 117);
+            txtUsername.Location = new Point(157, 117);
             txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(273, 30);
+            txtUsername.Size = new Size(307, 30);
             txtUsername.TabIndex = 4;
             // 
             // txtPassword
             // 
             txtPassword.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(172, 196);
+            txtPassword.Location = new Point(157, 198);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(273, 30);
+            txtPassword.Size = new Size(307, 30);
             txtPassword.TabIndex = 5;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
             btnLogin.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(118, 273);
+            btnLogin.Location = new Point(12, 273);
             btnLogin.Margin = new Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(278, 51);
+            btnLogin.Size = new Size(452, 51);
             btnLogin.TabIndex = 6;
             btnLogin.Text = "Đăng nhập";
             btnLogin.UseVisualStyleBackColor = true;
@@ -102,7 +103,7 @@
             // btnRegister
             // 
             btnRegister.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRegister.Location = new Point(290, 378);
+            btnRegister.Location = new Point(279, 397);
             btnRegister.Margin = new Padding(3, 4, 3, 4);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(146, 44);
@@ -114,11 +115,23 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(87, 390);
+            label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(39, 405);
             label4.Name = "label4";
-            label4.Size = new Size(135, 20);
+            label4.Size = new Size(163, 25);
             label4.TabIndex = 8;
             label4.Text = "Chưa có tài khoản?";
+            // 
+            // btnForgetPassword
+            // 
+            btnForgetPassword.BackColor = Color.Transparent;
+            btnForgetPassword.Location = new Point(171, 344);
+            btnForgetPassword.Name = "btnForgetPassword";
+            btnForgetPassword.Size = new Size(130, 35);
+            btnForgetPassword.TabIndex = 9;
+            btnForgetPassword.Text = "Quên mật khẩu?";
+            btnForgetPassword.UseVisualStyleBackColor = false;
+            btnForgetPassword.Click += btnForgetPassword_Click;
             // 
             // LoginForm
             // 
@@ -126,7 +139,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackgroundImage = Properties.Resources.nền_login;
-            ClientSize = new Size(541, 475);
+            ClientSize = new Size(482, 462);
+            Controls.Add(btnForgetPassword);
             Controls.Add(label4);
             Controls.Add(btnRegister);
             Controls.Add(btnLogin);
@@ -136,7 +150,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
-            MaximumSize = new Size(559, 609);
+            MaximumSize = new Size(500, 600);
             Name = "LoginForm";
             Text = "Đăng nhập";
             FormClosed += LoginForm_FormClosed;
@@ -156,5 +170,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
         private Label label4;
+        private Button btnForgetPassword;
     }
 }

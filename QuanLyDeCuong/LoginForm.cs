@@ -119,5 +119,13 @@ namespace QuanLyDeCuong
         {
             this.AcceptButton = btnLogin;
         }
+
+        private void btnForgetPassword_Click(object sender, EventArgs e)
+        {
+            QuenMatKhau fp = new QuenMatKhau();
+            this.Hide();
+            fp.ShowDialog();
+            this.Close();
+        }
     }
 }

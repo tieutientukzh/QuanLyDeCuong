@@ -28,130 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.txtLink = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnCopyLink = new System.Windows.Forms.Button();
-            this.dgvDeCuong = new System.Windows.Forms.DataGridView();
-            this.lblWelcome = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeCuong)).BeginInit();
-            this.SuspendLayout();
+            txtSearch = new TextBox();
+            txtLink = new TextBox();
+            btnSearch = new Button();
+            btnCopyLink = new Button();
+            dgvDeCuong = new DataGridView();
+            lblWelcome = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            btnLogout = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvDeCuong).BeginInit();
+            SuspendLayout();
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(167, 89);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(423, 30);
-            this.txtSearch.TabIndex = 0;
+            txtSearch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(167, 111);
+            txtSearch.Margin = new Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(423, 30);
+            txtSearch.TabIndex = 0;
             // 
             // txtLink
             // 
-            this.txtLink.Enabled = false;
-            this.txtLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLink.Location = new System.Drawing.Point(167, 161);
-            this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(423, 30);
-            this.txtLink.TabIndex = 1;
+            txtLink.Enabled = false;
+            txtLink.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLink.Location = new Point(167, 201);
+            txtLink.Margin = new Padding(3, 4, 3, 4);
+            txtLink.Name = "txtLink";
+            txtLink.Size = new Size(423, 30);
+            txtLink.TabIndex = 1;
             // 
             // btnSearch
             // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(614, 82);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(105, 46);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.Location = new Point(614, 102);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(105, 58);
+            btnSearch.TabIndex = 2;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnCopyLink
             // 
-            this.btnCopyLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopyLink.Location = new System.Drawing.Point(614, 157);
-            this.btnCopyLink.Name = "btnCopyLink";
-            this.btnCopyLink.Size = new System.Drawing.Size(105, 41);
-            this.btnCopyLink.TabIndex = 3;
-            this.btnCopyLink.Text = "Copy";
-            this.btnCopyLink.UseVisualStyleBackColor = true;
-            this.btnCopyLink.Click += new System.EventHandler(this.btnCopyLink_Click);
+            btnCopyLink.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCopyLink.Location = new Point(614, 196);
+            btnCopyLink.Margin = new Padding(3, 4, 3, 4);
+            btnCopyLink.Name = "btnCopyLink";
+            btnCopyLink.Size = new Size(105, 51);
+            btnCopyLink.TabIndex = 3;
+            btnCopyLink.Text = "Copy";
+            btnCopyLink.UseVisualStyleBackColor = true;
+            btnCopyLink.Click += btnCopyLink_Click;
             // 
             // dgvDeCuong
             // 
-            this.dgvDeCuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDeCuong.Location = new System.Drawing.Point(20, 228);
-            this.dgvDeCuong.Name = "dgvDeCuong";
-            this.dgvDeCuong.RowHeadersWidth = 100;
-            this.dgvDeCuong.RowTemplate.Height = 24;
-            this.dgvDeCuong.Size = new System.Drawing.Size(758, 246);
-            this.dgvDeCuong.TabIndex = 4;
-            this.dgvDeCuong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeCuong_CellClick);
+            dgvDeCuong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDeCuong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDeCuong.Location = new Point(20, 285);
+            dgvDeCuong.Margin = new Padding(3, 4, 3, 4);
+            dgvDeCuong.Name = "dgvDeCuong";
+            dgvDeCuong.RowHeadersWidth = 100;
+            dgvDeCuong.RowTemplate.Height = 24;
+            dgvDeCuong.Size = new Size(758, 308);
+            dgvDeCuong.TabIndex = 4;
+            dgvDeCuong.CellClick += dgvDeCuong_CellClick;
             // 
             // lblWelcome
             // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(282, 9);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(30, 25);
-            this.lblWelcome.TabIndex = 5;
-            this.lblWelcome.Text = "Hi";
-            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcome.Location = new Point(282, 11);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(30, 25);
+            lblWelcome.TabIndex = 5;
+            lblWelcome.Text = "Hi";
+            lblWelcome.TextAlign = ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, 89);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Tìm kiếm:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(64, 111);
+            label2.Name = "label2";
+            label2.Size = new Size(97, 25);
+            label2.TabIndex = 6;
+            label2.Text = "Tìm kiếm:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 164);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 25);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Link:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(64, 205);
+            label3.Name = "label3";
+            label3.Size = new Size(54, 25);
+            label3.TabIndex = 7;
+            label3.Text = "Link:";
             // 
             // btnLogout
             // 
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.Location = new System.Drawing.Point(670, 12);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(108, 36);
-            this.btnLogout.TabIndex = 8;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            btnLogout.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogout.Location = new Point(670, 15);
+            btnLogout.Margin = new Padding(3, 4, 3, 4);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(108, 45);
+            btnLogout.TabIndex = 8;
+            btnLogout.Text = "Đăng xuất";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // SinhVienForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 486);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.dgvDeCuong);
-            this.Controls.Add(this.btnCopyLink);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtLink);
-            this.Controls.Add(this.txtSearch);
-            this.Name = "SinhVienForm";
-            this.Text = "SinhVienForm";
-            this.Load += new System.EventHandler(this.SinhVienForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeCuong)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 608);
+            Controls.Add(btnLogout);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(lblWelcome);
+            Controls.Add(dgvDeCuong);
+            Controls.Add(btnCopyLink);
+            Controls.Add(btnSearch);
+            Controls.Add(txtLink);
+            Controls.Add(txtSearch);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "SinhVienForm";
+            Text = "SinhVienForm";
+            Load += SinhVienForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvDeCuong).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
